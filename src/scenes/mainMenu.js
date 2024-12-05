@@ -18,6 +18,16 @@ export default function mainMenu() {
         k.add([k.sprite("platforms"), k.pos(platforWidth * 4, 450), k.scale(4) ])
     ];
 
+
+    k.add([
+        k.text("SONIC RING RUN", {font: "mania", size: 96}), k.pos(k.center().x, 200), k.anchor("center"),
+    ]);
+
+    k.add([
+        k.text("Press Space to start the game", {font: "mania", size: 32} ), k.pos(k.center().x, k.center().y -200), k.anchor("center")
+    ]);
+
+
     makeSonic(k.vec2(200, 745));
 
     k.onUpdate(() => {
