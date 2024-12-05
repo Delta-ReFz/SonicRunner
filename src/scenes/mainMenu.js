@@ -1,4 +1,4 @@
-import k from "../src/kaplayCtx";
+import k from "../kaplayCtx";
 
 export default function mainMenu() {
 
@@ -26,12 +26,12 @@ export default function mainMenu() {
         bgPieces[0].move(-100, 0)
         bgPieces[1].moveTo(bgPieces[0].pos.x + bgPieceWidth * 2, 0);
 
-        if(platforms[1].pos.x<0) {
-            platforms[0].moveTo(platforms[1].pos.x + platforms[1].width * 4, 0);
+        if(platforms[1].pos.x < 0) {
+            platforms[0].moveTo(platforms[1].pos.x + platforms[1].width * 4, 450);
             platforms.push(platforms.shift());
         }
 
         platforms[0].move(-4000, 0);
-        platforms[1].moveTo(platforms[0].pos.x + platforms[1].width * 4, 0)
+        platforms[1].moveTo(platforms[0].pos.x + platforms[1].width * 4, 450)
     });
 }
