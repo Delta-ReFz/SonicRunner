@@ -1,3 +1,4 @@
+import { makeSonic } from "../entities/sonic";
 import k from "../kaplayCtx";
 
 export default function mainMenu() {
@@ -16,6 +17,8 @@ export default function mainMenu() {
         k.add([k.sprite("platforms"), k.pos(0,450), k.scale(4) ]),
         k.add([k.sprite("platforms"), k.pos(platforWidth * 4, 450), k.scale(4) ])
     ];
+
+    makeSonic(k.vec2(200, 745));
 
     k.onUpdate(() => {
         if(bgPieces[1].pos.x < 0) {
