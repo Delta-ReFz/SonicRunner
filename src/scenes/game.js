@@ -1,3 +1,4 @@
+import { makeMotobug } from "../entities/motobug";
 import { makeSonic } from "../entities/sonic";
 import k from "../kaplayCtx";
 
@@ -26,6 +27,30 @@ export default function game() {
     k.loop(1, () => {
         gameSpeed += 50;
     })
+
+    const spawnMotoBug = () => {
+        const motobug = makeMotobug(k.vec2(1950, 773)); //1950 to make it start off screen & 773 is the best option (essai erreur)
+        motobug.onUpdate(() => {
+            if(gameSpeed < 3000) {
+                motobug.move(-(gameSpeed + 300), 0 ); //x velocity negative to make it move to the left; the +300 gives an impression that the motobug is moving to the left faster than the platform
+                return;
+            }
+
+            motobug.move(-gameSpeed, 0); //at this point the motobug moves at the same rate as the platform 
+        })
+
+        motobug.onExitScreen(() => {
+
+            if(motobug.pos.x < 0) {
+                k.destroy(motobug);
+            };
+        });
+
+        const waitTime = k.rand(0.5, 2.5) //random numbers between 0.5 to 2.5 we will eventually pass them en mode temps 
+        k.wait(waitTime, spawnMotoBug) //on est entrain de call the function in itself {infinite enemy spawner}
+    };
+
+    spawnMotoBug();
 
     k.add([
         k.rect(1920, 300),
