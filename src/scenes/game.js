@@ -23,6 +23,11 @@ export default function game() {
     let score = 0;
     let scoreMultiplier = 0;
 
+    const scoreText = k.add([
+        k.text("SCORE: 0", {font: "mania", size: 72}),
+        k.pos(20,20),
+    ])
+
     const sonic = makeSonic(k.vec2(200, 745));
     sonic.setControls();
     sonic.setEvents();
@@ -35,6 +40,8 @@ export default function game() {
             k.destroy(enemy);
             sonic.play("jump") //jump animation, not the sound because its (sonic.)
             sonic.jump();
+            score += 10;
+            scoreText.text = `SCORE: ${score}`;
             return;
         }
 
@@ -49,6 +56,7 @@ export default function game() {
         k.play("ring", { volume: 0.5 });
         k.destroy(ring);
         score++;
+        scoreText.text = `SCORE: ${score}`;
     })
 
 
