@@ -120,6 +120,12 @@ export default function game() {
 
     k.onUpdate(() => {
 
+
+        if(sonic.isGrounded()) {   //Reset the score when sonic touche le sol
+
+            scoreMultiplier = 0;
+        }
+
         if (bgPieces[1].pos.x < 0) {
             bgPieces[0].moveTo(bgPieces[1].pos.x + bgPieceWidth * 2, 0);
             bgPieces.push(bgPieces.shift());
