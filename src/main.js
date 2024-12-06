@@ -1,5 +1,6 @@
 import mainMenu from "./scenes/mainMenu";
 import k from "./kaplayCtx";
+import game from "./scenes/game";
 
 k.loadSprite("chemical-bg", "graphics/chemical-bg.png")
 k.loadSprite("platforms", "graphics/platforms.png")
@@ -32,16 +33,14 @@ k.loadFont("mania", "fonts/mania.ttf");
 
 k.loadSound("destroy", "sound/Destroy.wav");
 k.loadSound("city", "sound/city.mp3");
-k.loadSound("Hurt", "sound/Hurt.wav");
-k.loadSound("HyperRing", "sound/HyperRing.wav");
-k.loadSound("Jump", "sound/Jump.wav");
-k.loadSound("Ring", "sound/Ring.wav");
+k.loadSound("hurt", "sound/Hurt.wav");
+k.loadSound("hyperRing", "sound/HyperRing.wav");
+k.loadSound("jump", "sound/Jump.wav");
+k.loadSound("ring", "sound/Ring.wav");
 
 k.scene("main-menu", mainMenu);
 
-k.scene("game", () => {
-
-});
+k.scene("game", game);
 
 k.scene("gameover", () => {
 
