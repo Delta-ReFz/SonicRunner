@@ -29,8 +29,13 @@ export default function game() {
             k.destroy(enemy);
             sonic.play("jump") //jump animation, not the sound because its (sonic.)
             sonic.jump();
+            return;
 
         }
+
+        k.play("hurt", {volume:0.5});
+        
+        k.go("gameover");
 
     }) //this function is gonna run when sonic is gonna collide with any object that has the "tag" and its "enemy". The game object with the tag enemy that collided with sonic is getting destroyed
 
