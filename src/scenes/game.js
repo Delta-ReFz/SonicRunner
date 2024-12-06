@@ -22,6 +22,18 @@ export default function game() {
     const sonic = makeSonic(k.vec2(200, 745));
     sonic.setControls();
     sonic.setEvents();
+    sonic.onCollide("enemy", (enemy) => { 
+        if(!sonic.isGrounded()) {
+            k.play("destroy", {volume:0.5});
+            k.play("hyperRing", {volume:0.5});
+            k.destroy(enemy);
+            sonic.play("jump") //jump animation, not the sound because its (sonic.)
+            sonic.jump();
+
+        }
+
+    }) //this function is gonna run when sonic is gonna collide with any object that has the "tag" and its "enemy". The game object with the tag enemy that collided with sonic is getting destroyed
+
 
     let gameSpeed = 300;
     k.loop(1, () => {
