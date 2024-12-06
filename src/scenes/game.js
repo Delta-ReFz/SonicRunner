@@ -40,7 +40,8 @@ export default function game() {
             k.destroy(enemy);
             sonic.play("jump") //jump animation, not the sound because its (sonic.)
             sonic.jump();
-            score += 10;
+            scoreMultiplier += 1;
+            score += 10 * scoreMultiplier;
             scoreText.text = `SCORE: ${score}`;
             return;
         }
