@@ -1,4 +1,5 @@
 import { makeMotobug } from "../entities/motobug";
+import { makeRing } from "../entities/ring";
 import { makeSonic } from "../entities/sonic";
 import k from "../kaplayCtx";
 
@@ -23,6 +24,8 @@ export default function game() {
     sonic.setControls();
     sonic.setEvents();
     sonic.onCollide("enemy", (enemy) => { 
+
+        //If he is not grounded so "jump mode" then :
         if(!sonic.isGrounded()) {
             k.play("destroy", {volume:0.5});
             k.play("hyperRing", {volume:0.5});
@@ -30,11 +33,10 @@ export default function game() {
             sonic.play("jump") //jump animation, not the sound because its (sonic.)
             sonic.jump();
             return;
-
         }
 
+        // If Sonic collides while grounded
         k.play("hurt", {volume:0.5});
-        
         k.go("gameover");
 
     }) //this function is gonna run when sonic is gonna collide with any object that has the "tag" and its "enemy". The game object with the tag enemy that collided with sonic is getting destroyed
@@ -68,6 +70,25 @@ export default function game() {
     };
 
     spawnMotoBug();
+
+    const spawnRing = () => {
+        const ring = makeRing(k.vec2(1950, 745))
+        ring.onUpdate(() => {
+            ring.move(-gameSpeed, 0); //at this point the ring moves at the same rate as the platform 
+        });
+
+        ring.onExitScreen(() => {
+            if(ring.pos.x < 0) {
+                k.destroy(ring);
+            };
+        });
+
+        const waitTime = k.rand(0.5, 3) //random numbers between 0.5 to 3 we will eventually pass them en mode temps 
+        k.wait(waitTime, spawnRing) //on est entrain de call the function in itself {infinite ring spawner}
+
+    };
+
+    spawnRing();
 
     k.add([
         k.rect(1920, 300),
