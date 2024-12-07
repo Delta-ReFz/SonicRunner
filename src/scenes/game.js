@@ -6,6 +6,7 @@ import k from "../kaplayCtx";
 export default function game() {
 
     k.setGravity(3100);
+    const citySfx = k.play("city", {volume: 0.2, loop: true})
 
 
     const bgPieceWidth = 1920;
@@ -53,7 +54,8 @@ export default function game() {
 
         // If Sonic collides while grounded
         k.play("hurt", { volume: 0.5 });
-        k.go("gameover");
+        k.setData("current-score", score)
+        k.go("gameover", {citySfx});
 
     }) //this function is gonna run when sonic is gonna collide with any object that has the "tag" and its "enemy". The game object with the tag enemy that collided with sonic is getting destroyed
 
