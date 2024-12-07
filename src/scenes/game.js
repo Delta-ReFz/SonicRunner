@@ -43,6 +43,11 @@ export default function game() {
             scoreMultiplier += 1;
             score += 10 * scoreMultiplier;
             scoreText.text = `SCORE: ${score}`;
+            if(scoreMultiplier === 1 ) sonic.ringCollectUI.text = "+10";
+            if(scoreMultiplier > 1) sonic.ringCollectUI.text = `x${scoreMultiplier}`;
+            k.wait(1, () => {
+                sonic.ringCollectUI.text = "";
+            })
             return;
         }
 
@@ -58,6 +63,8 @@ export default function game() {
         k.destroy(ring);
         score++;
         scoreText.text = `SCORE: ${score}`;
+        sonic.ringCollectUI.text = "+1";
+        k.wait(1 , () => sonic.ringCollectUI.text = "");
     })
 
 
