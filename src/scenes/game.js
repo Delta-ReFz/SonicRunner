@@ -55,7 +55,7 @@ export default function game() {
         // If Sonic collides while grounded
         k.play("hurt", { volume: 0.5 });
         k.setData("current-score", score)
-        k.go("gameover", {citySfx});
+        k.go("gameover", citySfx);
 
     }) //this function is gonna run when sonic is gonna collide with any object that has the "tag" and its "enemy". The game object with the tag enemy that collided with sonic is getting destroyed
 
